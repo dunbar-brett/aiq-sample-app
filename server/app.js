@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 
 const app = express();
 
@@ -7,41 +8,30 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 app.use(express.static('build'));
+app.use(express.json());
 
-const exampleContacts = [
-  {
-    name: 'John Doe',
-    email: 'johndoe@test.com',
-    address: '1234 Elm St, Springfield, IL 62701',
-  },
-  {
-    name: 'Jane Smith',
-    email: 'janesmith@test.com',
-    address: '1234 Fake St, Test, AZ 85745',
-  },
-  {
-    name: 'Bob Johnson',
-    email: 'bobby@test.com',
-    address: '4321 Weird St, Portland, OR 97202',
-  },
-  {
-    name: 'Sally Johnson',
-    email: 'sally@test.com',
-    address: '4321 Weird St, Portland, OR 97202',
-  }
-]
+let rawdata = fs.readFileSync('contacts.json');
+let contacts = JSON.parse(rawdata);
 
 
-// Should have an endpoint to list contacts using a GET request
 app.get('/api/contacts', (req, res) => {
-  res.send(exampleContacts);
+  res.send(contacts);
 });
 
-// Should have an endpoint to receive a POST request to create a new contact
 app.post('/api/contacts', (req, res) => {
-  res.json({ message: 'New contact created' });
+  const {
+      name,
+      email,
+      address
+  } = req.body;
+
+  if (!name || !email) {
+      return res.status(400).json({ message: 'Name and email are required' });
+  }
+
+  contacts.push({ name, email, address });
+  fs.writeFileSync('contacts.json', JSON.stringify(contacts, null, 2));
+  res.json({ message: 'New contact created', contacts: contacts});
 });
 
-// A contact should have a name (required), email (required) and an address
-// (optional)
-// Should have basic validation for any required fields
+

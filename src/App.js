@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import Contacts from './Contacts';
+import ContactForm from './ContactForm';
+
 
 function App() {
   const [contacts, setContacts] = useState([]);
-  const [newContact, setNewContact] = useState({ name: '', email: '', address: '' });
   
   useEffect(() => {
     fetch('/api/contacts')
@@ -11,20 +13,37 @@ function App() {
       .catch(err => console.error(err));
   }, []);
 
-  function renderContacts() {
-    return contacts.map((contact, index) => (
-      <div key={index}>
-        <h3>{contact.name}</h3>
-        <h4>{contact.email}</h4>
-        <p>{contact.address}</p>
-      </div>
-    ));
-  }
+  const handleSaveContact = async (e, contact) => {
+    e.preventDefault();
+
+    try {
+      let res = await fetch('/api/contacts', {
+        method: 'POST',
+        body: JSON.stringify(contact),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      let resJson = await res.json();
+
+      if (res.status === 200) {
+        alert('User created successfully');
+        setContacts(resJson.contacts);
+        e.target.reset();
+      } else {
+        alert(`Some error occured: ${resJson.message}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   return (
     <main>
       <h1>AIQ Contact Manager</h1>
-      {renderContacts()}
+      <Contacts contacts={contacts} />
+      <ContactForm saveContact={handleSaveContact}/>
     </main>
   );
 }

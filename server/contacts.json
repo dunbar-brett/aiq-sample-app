@@ -1,0 +1,17 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@test.com",
+    "address": "1234 Elm St, Springfield, IL 62701"
+  },
+  {
+    "name": "Jane Smith",
+    "email": "janesmith@test.com",
+    "address": "1234 Fake St, Test, AZ 85745"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bobby@test.com",
+    "address": "4321 Weird St, Portland, OR 97202"
+  }
+]
