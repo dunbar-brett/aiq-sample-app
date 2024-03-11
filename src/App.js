@@ -14,8 +14,6 @@ function App() {
   }, []);
 
   const handleSaveContact = async (e, contact) => {
-    e.preventDefault();
-
     try {
       let res = await fetch('/api/contacts', {
         method: 'POST',
@@ -40,10 +38,12 @@ function App() {
   };
   
   return (
-    <main>
-      <h1>AIQ Contact Manager</h1>
-      <Contacts contacts={contacts} />
-      <ContactForm saveContact={handleSaveContact}/>
+    <main className='bg-slate-500'>
+      <h1 className='text-center font-bold text-5xl pb-5 pt-8'>AIQ Contact Manager</h1>
+      <div className='flex min-h-screen p-6'>
+        <Contacts contacts={contacts} />
+        <ContactForm saveContact={handleSaveContact}/>
+      </div>
     </main>
   );
 }
