@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
 function App() {
+  const [contacts, setContacts] = useState([]);
+  const [newContact, setNewContact] = useState({ name: '', email: '', address: '' });
+  
+  useEffect(() => {
+    fetch('/api/contacts')
+      .then(res => res.json())
+      .then(data => setContacts(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  function renderContacts() {
+    return contacts.map((contact, index) => (
+      <div key={index}>
+        <h3>{contact.name}</h3>
+        <h4>{contact.email}</h4>
+        <p>{contact.address}</p>
+      </div>
+    ));
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>AIQ Contact Manager</h1>
+      {renderContacts()}
+    </main>
   );
 }
 
