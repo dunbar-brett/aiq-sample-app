@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# AIQ Contact Manager 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple app for contact management using React and Express. It's not connected to a DB and all contacts are stored on a JSON file within the `server` directory
 
-## Available Scripts
+## To Run the App and Server
 
-In the project directory, you can run:
+Once you clone this repo you need to install the node modules for both the React app and the Express app. I suggest having two terminal tabs or windows open, one in the main poject directory and one in the `server` directory.
 
-### `npm start`
+In the main directory, install node modules:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`npm i`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Then navigate to the `server` directory and install it's node modules as well:
 
-### `npm test`
+`cd server`
+`npm i`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Now back in the main directory, start the React app server:
 
-### `npm run build`
+`npm run start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+And in the `server` directory run:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm run start` 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+or if you want hot reload support:
 
-### `npm run eject`
+`npm run dev`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You can then navigate to `http://localhost:3000/` in your browser to view the Contact Manager app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## API Endpoints:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Get Contacts
+`http://localhost:3000/api/contacts`
 
-## Learn More
+Returns a list of contacts that are stored in the `contacts.json` file in `/server`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Post Contacts
+`http://localhost:3000/api/contacts`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Accepts a contact object with the following properties
+Name (required)
+Email (required)
+Address (optional)
