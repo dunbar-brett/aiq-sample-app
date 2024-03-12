@@ -1,6 +1,6 @@
 export default function Contacts({contacts}) {
   return (
-    <aside className='px-4 h-fit'>
+    <aside className='md:row-start-1 row-start-2 px-4 h-fit'>
       <h2 className="font-bold text-xl pb-4">Contacts:</h2>
       {
         contacts.map((contact, index) => (
