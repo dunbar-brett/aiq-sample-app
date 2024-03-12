@@ -38,9 +38,9 @@ function App() {
   };
   
   return (
-    <main className='bg-slate-500'>
+    <main className='bg-slate-500 flex min-h-screen flex-col items-center '>
       <h1 className='text-center font-bold text-5xl pb-5 pt-8'>AIQ Contact Manager</h1>
-      <div className='flex lg:flex-row sm:flex-col min-h-screen p-6 lg:justify-center h-fit'>
+      <div className='grid grid-cols-1 md:grid-cols-2 p-4'>
         <Contacts contacts={contacts} />
         <ContactForm saveContact={handleSaveContact}/>
       </div>

@@ -13,5 +13,10 @@
     "name": "Bob Johnson",
     "email": "bobby@test.com",
     "address": "4321 Weird St, Portland, OR 97202"
+  },
+  {
+    "name": "asdf",
+    "email": "asdf@asdf.com",
+    "address": ""
   }
 ]
