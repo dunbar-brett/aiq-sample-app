@@ -31,7 +31,7 @@ export default function ContactForm({saveContact}) {
   }
 
   return (
-    <section className='w-96 bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 h-1/2 mt-11'>
+    <section className='w-96 content-center justify-center bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 h-1/2 mt-11'>
       <h3 className="text-center font-bold text-xl pb-4">Contact Form</h3>
       <form className='space-y-3 mx-auto' onSubmit={handleSubmit}>
         <input type='text' 
